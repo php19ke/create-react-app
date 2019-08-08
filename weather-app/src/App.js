@@ -16,7 +16,7 @@ class App extends React.Component {
 	}
 
 	getWeather = async (e) => {
-		e.preventDefault();
+		e.preventDefault(); debugger
 
 		const city = e.target.elements.city.value;
 
@@ -54,12 +54,12 @@ class App extends React.Component {
 				</Form>
 
 				<Weather
-						temperature={this.state.temperature}
-						city={this.state.city}
-						country={this.state.country}
-						humidity={this.state.humidity}
-						description={this.state.description}
-						error={this.state.error} />
+					temperature={this.state.temperature}
+					city={this.state.city}
+					country={this.state.country}
+					humidity={this.state.humidity}
+					description={this.state.description}
+					error={this.state.error} />
 			</div>
 		)
 	}
