@@ -16,7 +16,7 @@ const customStyle = {
     ),
     React.createElement( // content of the element
         'h2',
-        {id: 'childEl', style: customStyle},
+        {id: 'childEl', style: customStyle},n
         'Hello World from Child El'
     ),
     React.createElement( // content of the element
@@ -36,18 +36,30 @@ const imgSrc = 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle
     </div>
  */
 
+const greetingMessages = {
+    morning: 'Good morning',
+    afternoon: 'Good afternoon',
+    evening: 'Good evening'
+}
+
 class HelloMessage extends React.Component {
     render() {
+        console.log(this.props)
+
         return (
-            <div class="btn">
-                <h1>Hello from react component</h1>
-            </div>
-        )
+            <div>
+                <h1>{this.props.morningMessage}</h1>   
+            </div>          
+        )  
     }
 }
 
 ReactDOM.render(
-    <HelloMessage/>,
+    <HelloMessage 
+        morningMessage={greetingMessages.morning}
+        afternoonMessage={greetingMessages.afternoon}
+        eveningMessage={greetingMessages.evening}
+    />,
     document.getElementById('mainContent')
 );
 
