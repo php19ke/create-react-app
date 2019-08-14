@@ -33,32 +33,55 @@ const now = today.getHours() + ":" + (min < 10 ? '0' + min : min) + ":" + today.
         )  
     }
 } */
+const movieList = [
+    {
+        title: 'transformers',
+        imdb: '7',
+        staring: "megan fox, shia labeouf"
+    },
+    {
+        title: 'twilight',
+        imdb: '5',
+        staring: 'kristen stewart, robert pattinson'
+    },
+    {
+        title: 'harry potter',
+        imdb: '7',
+        staring: 'emma watson, rupert grint, tom felton'
+    },
+    {
+        title: 'titanic',
+        imdb: '7',
+        staring: 'emma watson, rupert grint, tom felton'
+    }
+];
 
-function fetchGreetingMessage (props, time) {
-    if (time <= 12) {
-        return props.morningMessage;
-    } else if (time <= 18) {
-        return props.afternoonMessage;
-    } else {
-        return props.eveningMessage;
-    } 
+function Movie(props) {
+    return <div>
+        <h2>{props.title}</h2>
+        <p>{props.imdb}</p>
+        <p>{props.staring}</p>
+    </div>
 }
 
-function HelloMessage(props) {
+function Cinema(props) { // composing component
+    console.log('Props of Cinema is: ');
+    console.log(props);
+
     return <div>
-        <h1> { fetchGreetingMessage(props, props.timeNow) } </h1>   
-        <h1> the time now is { props.today } </h1>   
-    </div>            
+        {props.movies.map((movie, index) => {
+            return <Movie 
+                key={index}
+                title={movie.title}
+                imdb={movie.imdb}
+                staring={movie.staring}
+            />
+        })}
+    </div>           
 }
 
 render(
-    <HelloMessage 
-        morningMessage={greetingMessages.morning}
-        afternoonMessage={greetingMessages.afternoon}
-        eveningMessage={greetingMessages.evening}
-        timeNow={hour}
-        today={now}
-    />,
+    <Cinema movies={movieList} josh="No"/>,
     document.getElementById('mainContent')
 );
 
