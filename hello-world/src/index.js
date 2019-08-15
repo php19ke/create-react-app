@@ -63,7 +63,7 @@ class Movie extends React.Component {
             <p>{this.props.imdb}</p>
             <p>{this.props.staring}</p>
             <p>{this.props.open ? 'SUPERPAIVA!' : 'NORMAL PRICE'}</p>
-            <button onClick={this.props.toggleCampaign}>update</button>
+            <button onClick={this.props.toggleCampaign}>Update Root State</button>
         </div>
     }    
 }
