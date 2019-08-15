@@ -56,28 +56,51 @@ const movieList = [
     }
 ];
 
-function Movie(props) {
-    return <div>
-        <h2>{props.title}</h2>
-        <p>{props.imdb}</p>
-        <p>{props.staring}</p>
-    </div>
+class Movie extends React.Component {
+    render(){
+        return <div>
+            <h2>{this.props.title}</h2>
+            <p>{this.props.imdb}</p>
+            <p>{this.props.staring}</p>
+            <p>{this.props.open ? 'SUPERPAIVA!' : 'NORMAL PRICE'}</p>
+            <button onClick={this.props.toggleCampaign}>update</button>
+        </div>
+    }    
 }
 
-function Cinema(props) { // composing component
-    console.log('Props of Cinema is: ');
-    console.log(props);
+class Cinema extends React.Component {
+    state = {
+        superpaiva: true,
+        open: false
+    }
 
-    return <div>
-        {props.movies.map((movie, index) => {
-            return <Movie 
-                key={index}
-                title={movie.title}
-                imdb={movie.imdb}
-                staring={movie.staring}
-            />
-        })}
-    </div>           
+    toggleCampaign = () => {
+        this.setState(prevState => ({
+            superpaiva: !prevState.superpaiva
+        }));
+    }
+
+    render() {
+        console.log('The value of this.state.superpaiva is currently');
+        console.log(this.state.superpaiva);
+
+        return <div>
+            <div>The superpaiva event is now up? {this.state.superpaiva ? <span>YES!</span> : <span>NOPE!</span>} </div>
+
+            <button onClick={this.toggleCampaign}>update</button>
+
+            {this.props.movies.map((movie, index) => {
+                return <Movie 
+                    key={index}
+                    title={movie.title}
+                    imdb={movie.imdb}
+                    staring={movie.staring}
+                    open={this.state.superpaiva}
+                    toggleCampaign={this.toggleCampaign}
+                />
+            })}
+        </div> 
+    }
 }
 
 render(
