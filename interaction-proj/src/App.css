@@ -10,6 +10,10 @@ html, body {
   height: 80px;
 }
 
+.Static-app-logo {
+  height: 80px;
+}
+
 .App-title {
   font-size: 1.5em;
 }
