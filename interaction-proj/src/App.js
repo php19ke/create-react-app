@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import logo from './logo.png';
 import './App.css';
+import Card from './components/Card'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      spinLogo: true
+      spinLogo: true,
+      cards: [
+        {id: 1},
+        {id: 2},
+        {id: 3},
+        {id: 4}
+      ]
     }
 
     this.toggleSpin = this.toggleSpin.bind(this);
@@ -32,6 +39,14 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+
+        <div className="grid">
+          {
+            this.state.cards.map(card => (
+              <Card id={card.id} duration={150}></Card>
+            ))
+          }
+        </div>
       </div>
     );
   }

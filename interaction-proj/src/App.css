@@ -2,12 +2,19 @@ html, body {
   text-align: center;
   background: url('./background.jpg') no-repeat center center fixed;
   background-size: cover;
-  color: white;
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
+}
+
+.grid {
+  margin: 5%;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+
 }
 
 .Static-app-logo {
