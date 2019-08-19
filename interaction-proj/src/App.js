@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.png';
 import './App.css';
+import './animate.css';
+
 import Card from './components/Card'
 
 class App extends Component {
@@ -31,9 +33,10 @@ class App extends Component {
         <header className="App-header">
           <img 
               src={logo} 
-              className={this.state.spinLogo ? "App-logo" : "Static-app-logo"} 
+              className={this.state.spinLogo ? "Static-app-logo" : "Static-app-logo jello animated"} 
               alt="logo"
-              onClick={this.toggleSpin}/>
+              onMouseEnter={this.toggleSpin}
+              onMouseLeave={this.toggleSpin}/>
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
