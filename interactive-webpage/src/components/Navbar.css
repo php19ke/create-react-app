@@ -10,11 +10,15 @@
     box-shadow: 2px 2px 10px black;
 }
 
-.nav-content>div {
+.nav-content div {
     cursor: pointer;
 }
 
-.nav-content>div:hover {
+.nav-content a {
+    text-decoration: none;
+}
+
+.nav-content div:hover {
     transition: 0.2s;
     color: grey;
     background: white;

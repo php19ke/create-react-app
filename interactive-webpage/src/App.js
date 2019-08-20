@@ -3,8 +3,12 @@ import logo from './logo.png';
 import './App.css';
 import './animate.css';
 import Car from './components/Car';
-import Loader from './components/Loader'
-import Navbar from './components/Navbar'
+import Loader from './components/Loader';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Info from './components/Info';
+
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class App extends React.Component {
 	constructor(props) {
@@ -54,32 +58,43 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<div className="App">
-				<Navbar />
-				<header className="App-header">
-					<img
-						src={logo}
-						className={this.state.spinLogo ? 'App-logo-static' : 'App-logo-static animated rubberBand'}
-						alt="logo"
-						onMouseEnter={this.toggleSpin}
-						onMouseLeave={this.toggleSpin}
-						onClick={this.showNavigator}
-					/>
+			<Router>
+				<div className="App">
+					<Navbar />
+					<header className="App-header">
+						<img
+							src={logo}
+							className={this.state.spinLogo ? 'App-logo-static' : 'App-logo-static animated rubberBand'}
+							alt="logo"
+							onMouseEnter={this.toggleSpin}
+							onMouseLeave={this.toggleSpin}
+							onClick={this.showNavigator}
+						/>
 
-					{
-						this.state.loading ?
-							<Loader /> :
-							<div className="car-list">
-								{
-									this.state.cars.map(car => (
-										<Car key={car.id}></Car>
-									))
-								}
-							</div>
-					}
+						<Switch>
+							{/* render single component when the path URL is exactly /  */}
+							<Route exact path="/" component={Home}></Route>
 
-				</header>
-			</div>
+							{/* render single component when the path URL is exactly /loader  */}
+							<Route exact path="/about-us" component={Info}></Route>
+
+							{/* render multiple components when path URL is exactly /carlist */}
+							<Route path="/services" render={() => (
+								this.state.loading ?
+									<Loader /> :
+									<div className="car-list">
+										{
+											this.state.cars.map(car => (
+												<Car key={car.id}></Car>
+											))
+										}
+									</div>
+							)
+							}></Route>
+						</Switch>
+					</header>
+				</div>
+			</Router>
 		);
 	}
 }
