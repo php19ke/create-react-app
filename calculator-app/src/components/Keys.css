@@ -14,3 +14,12 @@
     background: linear-gradient(90deg, rgba(244, 102, 10, 1) 0%, rgba(242, 166, 80, 1) 32%);
     color: white;
 }
+
+.symbolBtn:disabled {
+    background: red;
+}
+
+.numericalBtn {
+    background: grey;
+    color: white;
+}

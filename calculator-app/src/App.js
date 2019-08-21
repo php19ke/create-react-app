@@ -6,7 +6,7 @@ import Keys from './components/Keys'
 
 const style = {
 	padding: '20px 0',
-	backgroundColor: 'black',
+	backgroundColor: '#4e4d4d',
 	width: '100%',
 	height: '100%',
 	fontSize: '30px',
@@ -30,7 +30,7 @@ class App extends React.Component {
 
 	addInput(e) {
 		this.setState({
-			disableSymbol: isNaN(e.target.innerText),
+			disableSymbol: isNaN(e.target.innerText), // true when a symbol is detected, disable symbol button
 			output: this.state.output + e.target.innerText
 		});
 	}
