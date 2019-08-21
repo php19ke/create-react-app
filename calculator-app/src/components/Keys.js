@@ -14,10 +14,11 @@ class Keys extends React.Component {
                 <button onClick={this.props.addInput}>7</button>
                 <button onClick={this.props.addInput}>8</button>
                 <button onClick={this.props.addInput}>9</button>
-                <button onClick={this.props.addInput}>+</button>
-                <button onClick={this.props.addInput}>-</button>
-                <button onClick={this.props.addInput}>*</button>
-                <button onClick={this.props.addInput}>/</button>
+                <button disabled={this.props.disableSymbol ? 'disabled' : ''} onClick={this.props.addInput}>+</button>
+                <button disabled={this.props.disableSymbol ? 'disabled' : ''} onClick={this.props.addInput}>-</button>
+                <button disabled={this.props.disableSymbol ? 'disabled' : ''} onClick={this.props.addInput}>*</button>
+                <button disabled={this.props.disableSymbol ? 'disabled' : ''} onClick={this.props.addInput}>/</button>
+                <button onClick={this.props.reset}>C</button>
                 <button onClick={this.props.calculate}>=</button>
             </div>
         );

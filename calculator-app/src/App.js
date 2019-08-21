@@ -15,15 +15,18 @@ class App extends React.Component {
 		this.state = {
 			input: null,
 			triggerCalc: false,
-			output: ''
+			output: '',
+			disableSymbol: false
 		}
 
 		this.addInput = this.addInput.bind(this);
 		this.calculate = this.calculate.bind(this);
+		this.reset = this.reset.bind(this);
 	}
 
 	addInput(e) {
 		this.setState({
+			disableSymbol: isNaN(e.target.innerText),
 			output: this.state.output + e.target.innerText
 		});
 	}
@@ -35,10 +38,17 @@ class App extends React.Component {
 		});
 	}
 
+	reset() {
+		this.setState({
+			triggerCalc: false,
+			output: ''
+		})
+	}
+
 	render() {
 		return (
 			<div className="App" >
-				<Keys addInput={this.addInput} calculate={this.calculate} />
+				<Keys addInput={this.addInput} calculate={this.calculate} reset={this.reset} disableSymbol={this.state.disableSymbol} />
 
 				<div id="result" style={style}>
 					{
