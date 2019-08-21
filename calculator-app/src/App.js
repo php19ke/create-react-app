@@ -14,18 +14,21 @@ class App extends React.Component {
 		this.state = {
 			input: null,
 			triggerCalc: false,
-			output: 'The output goes here'
+			output: ''
 		}
 
 		this.addInput = this.addInput.bind(this);
 	}
 
 	addInput(e) {
-		console.log(e);
+		this.setState({
+			output: this.state.output + e.target.innerText
+		});
 	}
 
 	render() {
 		sayHello();
+		console.log('is output an empty string? ' + (this.state.output !== ''))
 		return (
 			<div className="App" >
 				<button onClick={this.addInput}>0</button>
@@ -43,7 +46,13 @@ class App extends React.Component {
 				<button onClick={this.addInput}>*</button>
 				<button onClick={this.addInput}>/</button>
 				<button onClick={this.addInput}>=</button>
-				<div id="result" style={style}>{this.state.output}</div>
+				<div id="result" style={style}>
+					{
+						this.state.output !== '' ?
+							this.state.output :
+							'The output goes here'
+					}
+				</div>
 			</div >
 		);
 	}
