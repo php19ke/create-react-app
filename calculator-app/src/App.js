@@ -5,8 +5,12 @@ import sayHello from './resources/utils';
 import Keys from './components/Keys'
 
 const style = {
-	margin: '20px',
-	backgroundColor: '#ffff00'
+	padding: '20px 0',
+	backgroundColor: 'black',
+	width: '100%',
+	height: '100%',
+	fontSize: '30px',
+	color: 'white'
 };
 
 class App extends React.Component {
@@ -34,12 +38,13 @@ class App extends React.Component {
 	calculate() {
 		this.setState({
 			triggerCalc: true,
-			output: eval(this.state.output)
+			output: this.state.output !== '' ? eval(this.state.output) : this.state.output
 		});
 	}
 
 	reset() {
 		this.setState({
+			disableSymbol: false,
 			triggerCalc: false,
 			output: ''
 		})
@@ -48,8 +53,6 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="App" >
-				<Keys addInput={this.addInput} calculate={this.calculate} reset={this.reset} disableSymbol={this.state.disableSymbol} />
-
 				<div id="result" style={style}>
 					{
 						this.state.output !== '' ?
@@ -57,6 +60,9 @@ class App extends React.Component {
 							'The output goes here'
 					}
 				</div>
+				<Keys addInput={this.addInput} calculate={this.calculate} reset={this.reset} disableSymbol={this.state.disableSymbol} />
+
+
 			</div >
 		);
 	}

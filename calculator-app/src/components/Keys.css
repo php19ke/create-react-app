@@ -1,0 +1,16 @@
+.button {
+    display: block;
+    background-color: #bbb;
+}
+
+.button button {
+    width: 25%;
+    height: 60px;
+    font-size: 30px;
+}
+
+.symbolBtn {
+    background: rgb(244, 102, 10);
+    background: linear-gradient(90deg, rgba(244, 102, 10, 1) 0%, rgba(242, 166, 80, 1) 32%);
+    color: white;
+}
