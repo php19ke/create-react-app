@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import sayHello from './resources/utils';
+import Keys from './components/Keys'
 
 const style = {
 	margin: '20px',
@@ -18,6 +19,7 @@ class App extends React.Component {
 		}
 
 		this.addInput = this.addInput.bind(this);
+		this.calculate = this.calculate.bind(this);
 	}
 
 	addInput(e) {
@@ -26,26 +28,18 @@ class App extends React.Component {
 		});
 	}
 
+	calculate() {
+		this.setState({
+			triggerCalc: true,
+			output: eval(this.state.output)
+		});
+	}
+
 	render() {
-		sayHello();
-		console.log('is output an empty string? ' + (this.state.output !== ''))
 		return (
 			<div className="App" >
-				<button onClick={this.addInput}>0</button>
-				<button onClick={this.addInput}>1</button>
-				<button onClick={this.addInput}>2</button>
-				<button onClick={this.addInput}>3</button>
-				<button onClick={this.addInput}>4</button>
-				<button onClick={this.addInput}>5</button>
-				<button onClick={this.addInput}>6</button>
-				<button onClick={this.addInput}>7</button>
-				<button onClick={this.addInput}>8</button>
-				<button onClick={this.addInput}>9</button>
-				<button onClick={this.addInput}>+</button>
-				<button onClick={this.addInput}>-</button>
-				<button onClick={this.addInput}>*</button>
-				<button onClick={this.addInput}>/</button>
-				<button onClick={this.addInput}>=</button>
+				<Keys addInput={this.addInput} calculate={this.calculate} />
+
 				<div id="result" style={style}>
 					{
 						this.state.output !== '' ?
