@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.png';
 import './App.css';
 
+// https://github.com/sindresorhus/pokemon
 const pokemon = require('pokemon');
 
 class App extends Component {
