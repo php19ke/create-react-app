@@ -2,6 +2,16 @@
   text-align: center;
 }
 
+.pokemon {
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.pokemon:hover {
+  background-color: grey;
+  color: white;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 1s linear;
   height: 30px;

@@ -12,7 +12,8 @@ class App extends Component {
 			loaded: false,
 			pokemons: [],
 			details: [],
-			activeNow: null
+			activeNow: null,
+			cache: {}
 		};
 
 		this.fetchData = this.fetchData.bind(this);
@@ -28,10 +29,29 @@ class App extends Component {
 
 	fetchDetails(e) {
 		// 'https://pokeapi.co/api/v2/pokemon/' + e.target.innerText.toLowerCase()
-		fetch(`https://pokeapi.co/api/v2/pokemon/${e.target.innerText.toLowerCase()}/`)
+		let pokeName = e.target.innerText.toLowerCase();
+
+		if (this.state.cache.hasOwnProperty(pokeName)) {
+			this.setState({
+				activeNow: {
+					name: pokeName,
+					img: this.state.cache[pokeName].img,
+					abilities: this.state.cache[pokeName].abilities,
+					types: this.state.cache[pokeName].types
+				}
+			});
+			return;
+		}
+
+		fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}/`)
 			.then(data => data.json())
 			.then(data => {
-				debugger
+				this.state.cache[data.name] = {
+					img: data.sprites.front_default,
+					abilities: data.abilities,
+					types: data.types
+				};
+
 				this.setState({
 					activeNow: {
 						name: data.name,
@@ -64,7 +84,7 @@ class App extends Component {
 				{
 					this.state.loaded ?
 						this.state.pokemons.map((pokemon, index) => {
-							return <div key={index} onClick={this.fetchDetails}>{pokemon}</div>
+							return <div className="pokemon" key={index} onClick={this.fetchDetails}>{pokemon}</div>
 						}) :
 						<div>Nothing loaded yet</div>
 				}
