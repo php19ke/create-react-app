@@ -11,7 +11,8 @@ class App extends Component {
 		this.state = {
 			loaded: false,
 			pokemons: [],
-			details: []
+			details: [],
+			activeNow: null
 		};
 
 		this.fetchData = this.fetchData.bind(this);
@@ -30,17 +31,34 @@ class App extends Component {
 		fetch(`https://pokeapi.co/api/v2/pokemon/${e.target.innerText.toLowerCase()}/`)
 			.then(data => data.json())
 			.then(data => {
-				alert(`
-					Here are the details information about ${data.name}:
-					${data.name} has ${data.abilities.length} abilities
-					And it is of type ${data.types[0].type.name} pokemon
-				`);
+				debugger
+				this.setState({
+					activeNow: {
+						name: data.name,
+						img: data.sprites.front_default,
+						abilities: data.abilities,
+						types: data.types
+					}
+				});
 			});
 	}
 
 	render() {
 		return (
 			<div className="App" >
+				{
+					this.state.activeNow ?
+						<div>
+							<img src={this.state.activeNow.img} />
+							<p>
+								Here are the details information about {this.state.activeNow.name}:
+								{this.state.activeNow.name} has {this.state.activeNow.abilities.length} abilities
+								And it is of type {this.state.activeNow.types[0].type.name} pokemon
+							</p>
+						</div> :
+						<div></div>
+				}
+
 				<img src={logo} className="App-logo" alt="logo" />
 				<button onClick={this.fetchData}>Fetch</button>
 				{
