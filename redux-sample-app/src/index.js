@@ -10,6 +10,10 @@ function productReducer(state = ['default1', 'default2'], action) {
 }
 
 function userReducer(state = 'defaultState', action) {
+    if (action.type === 'updateUserState') {
+        return action.payload.newState;
+    }
+
     return state;
 }
 
@@ -19,13 +23,19 @@ const allReducers = combineReducers({
 });
 
 const action = {
-    type: 'updateState',
+    type: 'updateUserState',
     payload: {
         newState: 'New State'
     }
 };
 
-const store = createStore(allReducers);
+const store = createStore(
+    allReducers,
+    { // provide preloadedState for reducers
+        product: ['iphone', 'ipad', 'macbook']
+    },
+    window.devToolsExtension && window.devToolsExtension()
+);
 
 console.log(store.getState()); // state of our store before dispatch the action
 
