@@ -51,5 +51,8 @@
     "yarn.lock": [
       "git rm --cached"
     ]
+  },
+  "dependencies": {
+    "yarn": "^1.17.3"
   }
 }
