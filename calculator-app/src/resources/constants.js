@@ -5,8 +5,9 @@ const constants = {
     DIVIDE: 'DIVIDE',
     CALC: 'CALC',
     RESET: 'RESET',
-    GET_PERCENTAGE: 'GET_PERCENTAGE',
-    NEGATE: 'NEGATE'
+    GET_PERCENTAGE: '%',
+    NEGATE: 'NEGATE',
+    text: 'This text does not contain any peanut butter',
 };
 
 export default constants;
