@@ -1,7 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import sayHello from './resources/utils';
 import Keys from './components/Keys'
 
 const style = {
